@@ -1,34 +1,36 @@
 package org.example.provider;
 
-import lombok.extern.slf4j.Slf4j;
-import org.example.Main;
 import org.example.model.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class MapProvider {
     private static final Logger log = LoggerFactory.getLogger(MapProvider.class);
 
-    public Map createMap(String mapPath) {
+    /**
+     * Load file content to create a Map object
+     * @param mapPath File path to instantiate a map
+     * @return The map corresponding to the file content
+     */
+    public Map createMap(String mapPath) throws IOException {
 
         Map map = new Map();
-        try (BufferedReader br = new BufferedReader(new FileReader(mapPath))) {
+        try (BufferedReader fileBuffer = new BufferedReader(new FileReader(mapPath))) {
             String line;
             int j = 0;
-            while ((line = br.readLine()) != null) {
+            while ((line = fileBuffer.readLine()) != null) {
+                String utf8Line = new String(line.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
                 map.addLine();
-                for(int i = 0; i < line.length(); i++) {
-                    map.addColumn(Character.toString(line.charAt(i)), j);
+                for(int i = 0; i < utf8Line.length(); i++) {
+                    map.addColumn(Character.toString(utf8Line.charAt(i)), j);
                 }
                 j++;
             }
-        }
-        catch(Exception e) {
-            log.error(e.getMessage());
-            //TODO Throw custom exception
         }
 
         return map;

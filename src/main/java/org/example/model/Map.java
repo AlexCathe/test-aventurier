@@ -1,8 +1,6 @@
 package org.example.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -10,7 +8,7 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode
-@Getter
+@AllArgsConstructor
 public class Map {
     private List<List<String>> grid;
 
@@ -18,18 +16,38 @@ public class Map {
         grid = new ArrayList<>();
     }
 
+    /**
+     * Add one column in the grid
+     * @param character The character to add in the grid
+     * @param lineIndex The line index which the character is added
+     */
     public void addColumn(String character, int lineIndex) {
         grid.get(lineIndex).add(character);
     }
 
+    /**
+     * Add one line in the grid
+     */
     public void addLine() {
         grid.add(new ArrayList<>());
     }
 
+    /**
+     * Check if the movement is possible or not
+     * @param nextCoordinate The coordinates to go
+     * @return True if the the movement is allowed, else false
+     */
     public boolean isAreaFree(Point nextCoordinate) {
-        return grid.get((int) nextCoordinate.getX()).get((int) nextCoordinate.getY()).equals(" ");
+
+        return nextCoordinate.getY() <= grid.size() && nextCoordinate.getX() < grid.get((int) nextCoordinate.getY()).size() && grid.get((int) nextCoordinate.getY()).get((int) nextCoordinate.getX()).equals(" ");
     }
-    public boolean isOutOfBoundaries(Point nextCoordinate) {
-        return ((nextCoordinate.getX() >= 0 && nextCoordinate.getY() >= 0) && (nextCoordinate.getX() <= grid.get((int) nextCoordinate.getY()).size() &&  nextCoordinate.getY() <= grid.size()));
+
+    /**
+     * Check if the coordinates are within the map
+     * @param nextCoordinate The coordinates to go
+     * @return true if the coordinates are in the map, else false
+     */
+    public boolean isInBoundaries(Point nextCoordinate) {
+        return ((nextCoordinate.getX() >= 0 && nextCoordinate.getY() >= 0) && (nextCoordinate.getY() < grid.size() && nextCoordinate.getX() < grid.get((int) nextCoordinate.getY()).size()));
     }
 }

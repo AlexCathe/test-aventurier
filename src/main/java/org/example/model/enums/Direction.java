@@ -2,7 +2,7 @@ package org.example.model.enums;
 
 public enum Direction {
     N,
-    W,
+    O,
     S,
     E,
 }
