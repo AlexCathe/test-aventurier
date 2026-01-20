@@ -1,4 +1,4 @@
-name: Java CI avec Maven
+name: Tests
 
 on:
   push:
@@ -20,5 +20,5 @@ jobs:
           distribution: 'temurin'
           java-version: '24'
 
-      - name: Build et tests Maven
+      - name: Build and tests
         run: mvn clean test
