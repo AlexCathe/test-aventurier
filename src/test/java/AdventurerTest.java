@@ -4,7 +4,6 @@ import org.example.exception.IllegalMovementException;
 import org.example.model.Adventurer;
 import org.example.model.Map;
 import org.example.service.AdventurerService;
-import org.example.provider.MapProvider;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
