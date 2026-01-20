@@ -6,4 +6,4 @@ Dans les deux cas, il est nécessaire d'entrer les arguments dans l'ordre suivan
 1. Chemin du fichier de la carte 
 2. Chemin du fichier des coordonnées de l'aventurier
 
-PS : Il peut être nécessaire, lors de l'execution du programme a l'aide d'un IDE, de cocher la case "Enable annotation processing" qui se trouve dans les paramètres de l'IDE dans la rubrique "Build". Il est également possible de build le projet en exécutant la commande "mvn clean install".
+PS : Il peut être nécessaire, avant l'execution du programme à l'aide d'un IDE, de cocher la case "Enable annotation processing" qui se trouve dans les paramètres de l'IDE dans la rubrique "Build". Il est également possible de build le projet en exécutant la commande "mvn clean install".
