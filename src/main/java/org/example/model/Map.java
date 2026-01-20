@@ -35,11 +35,10 @@ public class Map {
     /**
      * Check if the movement is possible or not
      * @param nextCoordinate The coordinates to go
-     * @return True if the the movement is allowed, else false
+     * @return True if the movement is allowed, else false
      */
     public boolean isAreaFree(Point nextCoordinate) {
-
-        return nextCoordinate.getY() <= grid.size() && nextCoordinate.getX() < grid.get((int) nextCoordinate.getY()).size() && grid.get((int) nextCoordinate.getY()).get((int) nextCoordinate.getX()).equals(" ");
+        return nextCoordinate.getY() < grid.size() && nextCoordinate.getX() < grid.get((int) nextCoordinate.getY()).size() && grid.get((int) nextCoordinate.getY()).get((int) nextCoordinate.getX()).equals(" ");
     }
 
     /**
@@ -48,6 +47,6 @@ public class Map {
      * @return true if the coordinates are in the map, else false
      */
     public boolean isInBoundaries(Point nextCoordinate) {
-        return ((nextCoordinate.getX() >= 0 && nextCoordinate.getY() >= 0) && (nextCoordinate.getY() < grid.size() && nextCoordinate.getX() < grid.get((int) nextCoordinate.getY()).size()));
+        return ((nextCoordinate.getX() >= 0 && nextCoordinate.getY() >= 0) && (nextCoordinate.getY() <= grid.size() && nextCoordinate.getX() <= grid.get((int) nextCoordinate.getY()).size()));
     }
 }
