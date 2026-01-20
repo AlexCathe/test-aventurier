@@ -11,7 +11,7 @@ import java.awt.*;
 
 @Data
 @EqualsAndHashCode
-
+@AllArgsConstructor
 public class Adventurer {
     private Point coordinates;
 
