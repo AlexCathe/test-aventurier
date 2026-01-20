@@ -11,22 +11,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Récupération du code
+      - name: Code recovery
         uses: actions/checkout@v4
 
-      - name: Installation de Java
+      - name: Java installation
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '24'
 
-      - name: Cache Maven
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
+      - name: Build with Maven
+      run: mvn -B package --file pom.xml
 
-      - name: Compilation et exécution des tests
-        run: mvn clean test
+      - name: Run tests with Maven
+      run: mvn -B test --file pom.xml
